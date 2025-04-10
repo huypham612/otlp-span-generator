@@ -1,0 +1,41 @@
+{
+  "scenarios": [
+    {
+      "name": "Baseline",
+      "spans_per_second": 100,
+      "duration_seconds": 300
+    },
+    {
+      "name": "Sustained Load",
+      "spans_per_second": 1000,
+      "duration_seconds": 900
+    },
+    {
+      "name": "Burst",
+      "spans_per_second": 2000,
+      "duration_seconds": 120
+    },
+    {
+      "name": "Recovery",
+      "phases": [
+        {
+          "spans_per_second": 4000,
+          "duration_seconds": 300
+        },
+        {
+          "spans_per_second": 0,
+          "duration_seconds": 60
+        },
+        {
+          "spans_per_second": 1000,
+          "duration_seconds": 300
+        }
+      ]
+    },
+    {
+      "name": "Long Run",
+      "spans_per_second": 1000,
+      "duration_seconds": 3600
+    }
+  ]
+}
