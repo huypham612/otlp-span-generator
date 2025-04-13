@@ -18,7 +18,7 @@ Usage:
     source .venv/bin/activate
     pip install -r requirements.txt
 
-    python tps-generator-span.py \
+    python3 tps-generator-span.py \
       --target localhost:9220 \
       --config test-scenarios.json \
       --scenario Baseline \
@@ -32,7 +32,6 @@ def generate_export_request(batch_size):
 
 async def send_batch(stub, spans):
     await stub.Export(spans)
-
 
 async def run_phase(stub, tps, duration, batch_size, concurrency):
     total_spans = int(tps * duration)
@@ -48,11 +47,11 @@ async def run_phase(stub, tps, duration, batch_size, concurrency):
     async def worker(worker_id):
         for i in range(batches_per_worker):
             spans = generate_export_request(batch_size)
-            print(f"[Worker {worker_id}] Batch {i + 1}/{batches_per_worker}")
-            print(MessageToJson(spans))
+            # print(f"[Worker {worker_id}] Batch {i + 1}/{batches_per_worker}")
+            # print(MessageToJson(spans))
 
-            # await send_batch(stub, spans)
-            # await asyncio.sleep(interval * concurrency)  # throttle globally
+            await send_batch(stub, spans)
+            await asyncio.sleep(interval * concurrency)  # throttle globally
 
     tasks = [asyncio.create_task(worker(i)) for i in range(concurrency)]
     await asyncio.gather(*tasks)
