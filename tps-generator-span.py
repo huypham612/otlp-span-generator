@@ -12,6 +12,10 @@ Fully Concurrent and Rate-Controlled OTLP Span Generator
 
 Usage:
   ssh -i ~/workplace/data-prepper-dev.pem -N -L 9220:localhost:21890 ec2-user@34.222.105.225
+  
+  python3 -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
 
   python tps-generator-span.py \
     --target localhost:9220 \
@@ -19,7 +23,7 @@ Usage:
     --input sample-span.json \
     --scenario Baseline \
     --batch 100 \
-    --concurrency 10
+    --concurrency 2
 """
 
 def load_spans(file_path):

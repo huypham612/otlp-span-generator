@@ -1,0 +1,4 @@
+protobuf
+grpcio
+grpcio-tools
+opentelemetry-proto==1.32.0
