@@ -1,41 +1,62 @@
 {
   "scenarios": [
     {
+      "name": "e2e",
+      "spans_per_second": 10,
+      "duration_seconds": 300,
+      "batch_size": 1,
+      "concurrency": 1
+    },
+    {
       "name": "Baseline",
       "spans_per_second": 100,
-      "duration_seconds": 300
+      "duration_seconds": 300,
+      "batch_size": 100,
+      "concurrency": 8
     },
     {
       "name": "Sustained Load",
       "spans_per_second": 1000,
-      "duration_seconds": 900
+      "duration_seconds": 900,
+      "batch_size": 100,
+      "concurrency": 8
     },
     {
       "name": "Burst",
       "spans_per_second": 2000,
-      "duration_seconds": 120
+      "duration_seconds": 120,
+      "batch_size": 100,
+      "concurrency": 8
     },
     {
       "name": "Recovery",
       "phases": [
         {
           "spans_per_second": 4000,
-          "duration_seconds": 300
+          "duration_seconds": 300,
+          "batch_size": 100,
+          "concurrency": 8
         },
         {
           "spans_per_second": 0,
-          "duration_seconds": 60
+          "duration_seconds": 60,
+          "batch_size": 0,
+          "concurrency": 1
         },
         {
           "spans_per_second": 1000,
-          "duration_seconds": 300
+          "duration_seconds": 300,
+          "batch_size": 100,
+          "concurrency": 8
         }
       ]
     },
     {
       "name": "Long Run",
       "spans_per_second": 1000,
-      "duration_seconds": 3600
+      "duration_seconds": 3600,
+      "batch_size": 100,
+      "concurrency": 8
     }
   ]
 }

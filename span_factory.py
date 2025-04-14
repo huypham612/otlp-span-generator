@@ -24,6 +24,13 @@ def generate_span(name="dynamic-span", trace_id=None, parent_id=None, duration_m
             KeyValue(key="http.method", value=AnyValue(string_value=random.choice(["GET", "POST", "PUT"]))),
             KeyValue(key="user.id", value=AnyValue(string_value=f"user-{random.randint(1000, 9999)}")),
             KeyValue(key="env", value=AnyValue(string_value=random.choice(["prod", "staging", "dev"]))),
+
+            KeyValue(key="service.name", value=AnyValue(string_value="example-service")),
+            KeyValue(key="cloud.provider", value=AnyValue(string_value="aws")),
+            KeyValue(key="cloud.account.id", value=AnyValue(string_value="376129846044")),
+            KeyValue(key="cloud.region", value=AnyValue(string_value="us-west-2")),
+            KeyValue(key="cloud.platform", value=AnyValue(string_value="aws_ec2")),
+            KeyValue(key="host.name", value=AnyValue(string_value="localhost"))
         ]
     )
 

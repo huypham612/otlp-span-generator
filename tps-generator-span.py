@@ -47,8 +47,8 @@ async def run_phase(stub, tps, duration, batch_size, concurrency):
     async def worker(worker_id):
         for i in range(batches_per_worker):
             spans = generate_export_request(batch_size)
-            # print(f"[Worker {worker_id}] Batch {i + 1}/{batches_per_worker}")
-            # print(MessageToJson(spans))
+            print(f"[Worker {worker_id}] Batch {i + 1}/{batches_per_worker}")
+            print(MessageToJson(spans))
 
             await send_batch(stub, spans)
             await asyncio.sleep(interval * concurrency)  # throttle globally
@@ -60,21 +60,19 @@ async def run_phase(stub, tps, duration, batch_size, concurrency):
     print(f"Sent {total_batches * batch_size} spans over {round(elapsed)} seconds at approx {round((total_batches * batch_size) / elapsed)} TPS.\n")
 
 
-async def run_scenario(stub, scenario, batch_size, concurrency):
+async def run_scenario(stub, scenario):
     if 'phases' in scenario:
         for phase in scenario['phases']:
-            await run_phase(stub, phase['spans_per_second'], phase['duration_seconds'], batch_size, concurrency)
+            await run_phase(stub, phase['spans_per_second'], phase['duration_seconds'], phase['batch_size'], phase['concurrency'])
     else:
-        await run_phase(stub, scenario['spans_per_second'], scenario['duration_seconds'], batch_size, concurrency)
+        await run_phase(stub, scenario['spans_per_second'], scenario['duration_seconds'], scenario['batch_size'], scenario['concurrency'])
 
 
 async def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--target', required=True, help='gRPC target like localhost:9220')
-    parser.add_argument('--config', required=True, help='Path to scenario config JSON file')
+    parser.add_argument('--target', required=False, default='localhost:9220', help='gRPC target like localhost:9220')
+    parser.add_argument('--config', required=False, default='test-scenarios.json', help='Path to scenario config JSON file')
     parser.add_argument('--scenario', required=True, help='Scenario name to execute')
-    parser.add_argument('--batch', type=int, default=1, help='Number of spans per request')
-    parser.add_argument('--concurrency', type=int, default=1, help='Number of concurrent workers')
     args = parser.parse_args()
 
     with open(args.config, 'r') as f:
@@ -86,7 +84,7 @@ async def main():
 
     async with grpc.aio.insecure_channel(args.target) as channel:
         stub = TraceServiceStub(channel)
-        await run_scenario(stub, scenario, args.batch, args.concurrency)
+        await run_scenario(stub, scenario)
 
 
 if __name__ == '__main__':
