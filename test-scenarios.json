@@ -8,28 +8,28 @@
       "concurrency": 1
     },
     {
-      "name": "Baseline",
+      "name": "base",
       "spans_per_second": 100,
       "duration_seconds": 300,
       "batch_size": 100,
       "concurrency": 8
     },
     {
-      "name": "Sustained Load",
+      "name": "sus",
       "spans_per_second": 1000,
       "duration_seconds": 900,
       "batch_size": 100,
       "concurrency": 8
     },
     {
-      "name": "Burst",
+      "name": "burst",
       "spans_per_second": 2000,
       "duration_seconds": 120,
       "batch_size": 100,
       "concurrency": 8
     },
     {
-      "name": "Recovery",
+      "name": "recovery",
       "phases": [
         {
           "spans_per_second": 4000,
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "name": "Long Run",
+      "name": "long",
       "spans_per_second": 1000,
       "duration_seconds": 3600,
       "batch_size": 100,
