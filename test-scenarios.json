@@ -2,8 +2,8 @@
   "scenarios": [
     {
       "name": "e2e",
-      "spans_per_second": 10,
-      "duration_seconds": 300,
+      "spans_per_second": 1,
+      "duration_seconds": 10,
       "batch_size": 1,
       "concurrency": 1
     },
@@ -12,7 +12,7 @@
       "spans_per_second": 100,
       "duration_seconds": 300,
       "batch_size": 100,
-      "concurrency": 8
+      "concurrency": 2
     },
     {
       "name": "sus",

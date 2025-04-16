@@ -18,12 +18,7 @@ Usage:
     source .venv/bin/activate
     pip install -r requirements.txt
 
-    python3 tps-generator-span.py \
-      --target localhost:9220 \
-      --config test-scenarios.json \
-      --scenario Baseline \
-      --batch 100 \
-      --concurrency 2
+    python3 tps-generator-span.py --scenario base
 """
 def generate_export_request(batch_size):
     return ExportTraceServiceRequest(
