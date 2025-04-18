@@ -26,7 +26,7 @@ def generate_export_request(batch_size):
     )
 
 async def send_batch(stub, spans):
-    await stub.Export(spans)
+    await stub.Export(spans, compression=grpc.Compression.Gzip)
 
 async def run_phase(stub, tps, duration, batch_size, concurrency):
     total_spans = int(tps * duration)
