@@ -12,7 +12,7 @@
       "spans_per_second": 100,
       "duration_seconds": 300,
       "batch_size": 100,
-      "concurrency": 4
+      "concurrency": 10
     },
     {
       "name": "sus",
