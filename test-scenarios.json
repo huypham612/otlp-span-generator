@@ -18,14 +18,14 @@
       "name": "sus",
       "spans_per_second": 1000,
       "duration_seconds": 900,
-      "batch_size": 512,
+      "batch_size": 100,
       "concurrency": 20
     },
     {
       "name": "burst",
       "spans_per_second": 2000,
       "duration_seconds": 300,
-      "batch_size": 512,
+      "batch_size": 100,
       "concurrency": 20
     },
     {
@@ -34,7 +34,7 @@
         {
           "spans_per_second": 4000,
           "duration_seconds": 300,
-          "batch_size": 512,
+          "batch_size": 100,
           "concurrency": 20
         },
         {
@@ -46,7 +46,7 @@
         {
           "spans_per_second": 1000,
           "duration_seconds": 300,
-          "batch_size": 512,
+          "batch_size": 100,
           "concurrency": 20
         }
       ]
@@ -55,7 +55,7 @@
       "name": "long",
       "spans_per_second": 1000,
       "duration_seconds": 3600,
-      "batch_size": 512,
+      "batch_size": 100,
       "concurrency": 20
     }
   ]
