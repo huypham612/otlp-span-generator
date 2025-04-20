@@ -2,7 +2,7 @@ import asyncio
 import json
 import argparse
 import time
-from google.protobuf.json_format import Parse, MessageToJson
+# from google.protobuf.json_format import Parse, MessageToJson
 from opentelemetry.proto.collector.trace.v1.trace_service_pb2_grpc import TraceServiceStub
 from opentelemetry.proto.collector.trace.v1.trace_service_pb2 import ExportTraceServiceRequest
 import grpc.aio
@@ -42,11 +42,11 @@ async def run_phase(stub, tps, duration, batch_size, concurrency):
     async def worker(worker_id):
         for i in range(batches_per_worker):
             spans = generate_export_request(batch_size)
-            print(f"[Worker {worker_id}] Batch {i + 1}/{batches_per_worker}")
-            print(MessageToJson(spans))
+            # print(f"[Worker {worker_id}] Batch {i + 1}/{batches_per_worker}")
+            # print(MessageToJson(spans))
 
             await send_batch(stub, spans)
-            await asyncio.sleep(interval * concurrency)  # throttle globally
+            await asyncio.sleep(interval)  # throttle globally
 
     tasks = [asyncio.create_task(worker(i)) for i in range(concurrency)]
     await asyncio.gather(*tasks)
