@@ -24,7 +24,7 @@
     {
       "name": "burst",
       "spans_per_second": 2000,
-      "duration_seconds": 120,
+      "duration_seconds": 300,
       "batch_size": 512,
       "concurrency": 20
     },
