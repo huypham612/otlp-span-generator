@@ -19,7 +19,7 @@
       "spans_per_second": 1000,
       "duration_seconds": 900,
       "batch_size": 100,
-      "concurrency": 20
+      "concurrency": 10
     },
     {
       "name": "burst",
