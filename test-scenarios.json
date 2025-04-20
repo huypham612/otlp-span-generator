@@ -35,7 +35,7 @@
           "spans_per_second": 4000,
           "duration_seconds": 300,
           "batch_size": 100,
-          "concurrency": 20
+          "concurrency": 10
         },
         {
           "spans_per_second": 0,
@@ -47,7 +47,7 @@
           "spans_per_second": 1000,
           "duration_seconds": 300,
           "batch_size": 100,
-          "concurrency": 20
+          "concurrency": 10
         }
       ]
     },
@@ -56,7 +56,7 @@
       "spans_per_second": 1000,
       "duration_seconds": 3600,
       "batch_size": 100,
-      "concurrency": 20
+      "concurrency": 10
     }
   ]
 }
